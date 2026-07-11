@@ -20,12 +20,17 @@
 - Shipped: `cloud ship` created app + Postgres + Reverb WS cluster;
   https://dealt-production-hczrri.laravel.cloud live (all pages 200,
   db=pgsql, broadcast=reverb). Genesis loop: "the house" / "as dealt".
-- Known issue at time of writing: VITE_REVERB_APP_KEY missing from first
-  build, so window.Echo undefined on prod; DealtDeployFix sub-agent
-  fixing + verifying Reverb E2E (fresh build with vars present).
+- Reverb E2E verified on prod by DealtDeployFix sub-agent: WebSocket
+  connected, live .wall-card.fresh arrival in a non-reloaded tab, test loop
+  deleted after. The earlier "window.Echo undefined" was a headless-harness
+  artifact (module scripts not auto-executed), not a deploy bug - the VITE
+  vars were baked into the first build all along.
+- Tweet reply drafted and voice-gated (lint clean, rewrite converged):
+  /tmp/dealt-tweet.txt. Remnic memory store was 503 at session close;
+  this file is the durable record.
 
-## Next
+## Next (blocked on Joshua)
 
-- Confirm Reverb live arrival on prod (sub-agent receipt).
-- Reply to Taylor's tweet with the laravel.cloud URL + screenshot.
-- Joshua bounces the real first loop as DJ Zip.
+- Post the gated reply to Taylor's tweet (2075667366646858222) - needs
+  Joshua's explicit go-ahead to publish under his X account.
+- Bounce the first real loop as DJ Zip.
