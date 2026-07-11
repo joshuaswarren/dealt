@@ -1,58 +1,69 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# DEALT - the daily loop
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Three cards. One groove. Thirty seconds of music. Every day, the whole
+internet gets the same deal.
 
-## About Laravel
+Live at https://dealt-production-hczrri.laravel.cloud
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## What this is
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Dealt is an anti-blank-page machine for music. Open the page and three cards
+are already on the table, generated from the DNA of a real 1999 techno catalog
+(mine, recovered from a dying CD-R 26 years later). Each card carries a key, a
+tempo, a seeded groove that is already playing, and one finish rule that
+defines "done" before you start. Pick a card, or hesitate 30 seconds and the
+house picks for you. Twist the pattern, bounce it to the wall, come back
+tomorrow.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+No AI anywhere in the product. The cards are dealt by a seeded PRNG, the
+synths are wired by hand in Web Audio, and every loop on the wall is exactly
+what a person tapped into a grid. You can download any loop you make as a
+.mid file and finish it in a real DAW.
 
-## Learning Laravel
+## How it works
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- DealService deals the day from `mulberry32(Ymd)`: an ancestor card from
+  the 13-track catalog DNA, the signature card (A minor at 140 BPM, the
+  statistical center of the catalog), and a sidepath or wildcard. Three
+  distinct finish rules, seeded 6x16 patterns, note tables per key. Same date,
+  same deal, everywhere, forever. There is no deal storage; it is arithmetic.
+- The engine (resources/js/audio.js) synthesizes six voices live: 909-ish
+  kick, noise clap, hats, saw bass with a closing filter, detuned stab chords,
+  and a delayed lead. Lookahead scheduling keeps the groove tight.
+- The wall stores only patterns (kilobytes, not audio files) and
+  re-synthesizes every loop client-side on play. New bounces arrive live over
+  Laravel Reverb. A full listen counts as a spin.
+- Streaks live in localStorage. There are no accounts and no signups.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Run it yourself
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/joshuaswarren/dealt && cd dealt
+composer install && npm install
+cp .env.example .env && php artisan key:generate
+# point DB_* at Postgres, then:
+php artisan migrate
+npm run build
+php artisan serve
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Tests: `./vendor/bin/pest` (the deal determinism suite asserts the exact
+card contract across dates).
 
-## Contributing
+Deploying your own: `cloud ship` from the repo root does the whole thing on
+[Laravel Cloud](https://cloud.laravel.com) - app, Postgres, Reverb websocket
+cluster - in about a minute. That is how this instance got here.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## The story
 
-## Code of Conduct
+In 2000 a track of mine won amp3.com's first Pick Hit Gold of the millennium.
+Then the files were lost for 25 years, and in all that time I never started
+another project. The blank page won every day until this one. The full story
+is on [the about page](https://dealt-production-hczrri.laravel.cloud/about),
+and the recovered tracks are free in the
+[Internet Archive](https://archive.org/details/iuma-dj_zip).
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Stack: Laravel 13, Livewire 4, Reverb, Postgres, Web Audio, Tailwind 4.
+Built in one Saturday for Taylor Otwell's Laravel Cloud weekend challenge.
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+-josh
