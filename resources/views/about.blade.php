@@ -11,7 +11,7 @@
             AX-60 and a drum machine, and for one week the internet liked my song.
         </p>
         <p>
-            Then life happened. The site died, the files scattered, and for 25 years the music
+            Then life happened. amp3.com died in the dot-com bust, the files scattered, and for 25 years the music
             existed only as a story I told. This July, an AI agent found my old artist page in
             the Internet Archive's IUMA collection. All ten tracks, still there. Two days later
             we found the original CD-R master in a box. The disc was dying, so we ripped it
@@ -19,8 +19,8 @@
         </p>
         <p>
             Here is the part that stings: I never stopped wanting to make music. I bought the
-            gear, installed the software, and for 25 years I never started a project. Not once.
-            The blank page won every single time.
+            gear, installed the software, and for 25 years I never started a project. Not once. Always too busy working as a software developer, never with the time to get back to music.
+            When I did find a little bit of time, the blank page won every single time.
         </p>
         <p>
             So this morning I built a fix. A card deck generated from my own catalog's DNA.
