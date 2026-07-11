@@ -5,6 +5,8 @@ internet gets the same deal.
 
 Live at https://dealt-production-hczrri.laravel.cloud
 
+![Today's deal: three cards, one groove](art/deal-screen.png)
+
 ## What this is
 
 Dealt is an anti-blank-page machine for music. Open the page and three cards
