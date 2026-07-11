@@ -23,11 +23,24 @@
             <div class="wall-grid mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"></div>
         </section>
     @empty
-        <div class="mt-16 rounded-2xl border border-dashed border-line p-12 text-center">
-            <p class="font-mono text-sm tracking-widest text-dim">THE WALL IS EMPTY.</p>
+    @endforelse
+
+    @if (!isset($groups[$deal['day']]))
+        {{-- today hasn't been bounced yet: live arrivals still need a home --}}
+        <section class="mt-10 hidden" data-day="{{ $deal['day'] }}" data-today id="today-section">
+            <div class="flex items-baseline gap-3 border-b border-line pb-2">
+                <h2 class="font-mono text-sm font-bold tracking-[0.2em] text-acid">DEALT #{{ $deal['number'] }}</h2>
+                <span class="font-mono text-xs text-dim">{{ \Carbon\Carbon::parse($deal['day'])->format('D M j') }}</span>
+                <span class="font-mono text-xs text-dim">&middot; <span id="today-count">0</span> loops</span>
+            </div>
+            <div class="wall-grid mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"></div>
+        </section>
+
+        <div class="mt-16 rounded-2xl border border-dashed border-line p-12 text-center" id="wall-empty">
+            <p class="font-mono text-sm tracking-widest text-dim">{{ count($groups) ? 'NOTHING ON TODAY\'S WALL YET.' : 'THE WALL IS EMPTY.' }}</p>
             <p class="mt-2 text-dim">Someone has to bounce the first loop of the day.</p>
             <a href="{{ route('play') }}" class="btn-bounce mt-6 inline-block px-6 py-3 text-xs">BE THE ONE</a>
         </div>
-    @endforelse
+    @endif
 </div>
 </x-shell>

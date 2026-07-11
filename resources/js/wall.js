@@ -110,8 +110,12 @@ function initWall() {
     // live arrivals
     if (window.Echo) {
         window.Echo.channel('wall').listen('.loop.bounced', (loop) => {
-            const today = $('[data-today] .wall-grid') || $('.wall-grid');
-            if (today) today.prepend(renderLoopCard(loop, { fresh: true }));
+            const section = $('[data-today]');
+            const grid = section ? $('.wall-grid', section) : $('.wall-grid');
+            if (!grid) return;
+            if (section) section.classList.remove('hidden');
+            $('#wall-empty')?.remove();
+            grid.prepend(renderLoopCard(loop, { fresh: true }));
             const counter = $('#today-count');
             if (counter) counter.textContent = Number(counter.textContent) + 1;
         });
