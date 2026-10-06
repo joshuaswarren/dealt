@@ -1,5 +1,7 @@
 # DEALT - the daily loop
 
+[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-pink)](https://github.com/sponsors/joshuaswarren)
+
 Three cards. One groove. Thirty seconds of music. Every day, the whole
 internet gets the same deal.
 
@@ -69,3 +71,11 @@ Stack: Laravel 13, Livewire 4, Reverb, Postgres, Web Audio, Tailwind 4.
 Built in one Saturday for Taylor Otwell's Laravel Cloud weekend challenge.
 
 -josh
+
+## Support
+
+Every bit of support helps keep dealt alive and free. If you are able, [sponsor on GitHub](https://github.com/sponsors/joshuaswarren) or send a Lightning donation to `joshuaswarren@strike.me` to directly fund continued development and new integrations.
+
+[![Sponsor](https://img.shields.io/badge/Sponsor-%E2%9D%A4-pink?style=for-the-badge)](https://github.com/sponsors/joshuaswarren)
+
+If financial support is not an option, you can still make a big difference: [star the repo](https://github.com/joshuaswarren/dealt), share it, or recommend it to a colleague. Word of mouth is how most people find dealt.
